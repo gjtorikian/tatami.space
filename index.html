@@ -58,14 +58,25 @@
           <canvas id="canvas" class="dib v-top" width="360" height="360"></canvas>
 
           <div class="mt4 courier">
-            <a class="f6 link dim ph3 pv2 mb2 dib white bg-dark-blue" onclick="clearCanvas(); draw();" href="javascript:void(0);">Generate New</a>
+            <a class="f6 link dim ph3 pv2 mb2 dib white bg-dark-blue" onclick="clearCanvas(); draw(true);" href="javascript:void(0);">Generate New</a>
             <a class="f6 link dim ph3 pv2 mb2 dib white bg-dark-blue" id="save" download="tatami.png" href="#">Save Image</a>
           </div>
-          <p>
+          <div class="mw9 center ph3-ns dark-gray">
+            <div class="cf ph2-ns">
+              <div class="fl w-100 w-50-ns pa2">
+                <div class="pv4">"The 4.5 tatami room is my entire world."</div>
+              </div>
+              <div class="fl w-100 w-50-ns pa2">
+                <div class="pv4">「四畳半こそ私の世界の全てである」</div>
+              </div>
+            </div>
+          </div>
+          <div class="center">
             <a class="no-underline dark-blue" href="https://github.com/gjtorikian/tatami.space">source code</a>
+          </div>
         </div>
       </div>
     </article>
   </body>
-  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="assets/main.js"></script>
 </html>
