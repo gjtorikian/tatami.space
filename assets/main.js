@@ -1,8 +1,15 @@
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 const patterns = [
+  "patterns/asanoha.png",
+  "patterns/aztec_tribal_white_blue.png",
+  "patterns/fondo_con_mosaico_rojo.png",
+  "patterns/hufflepugg_argyle.png",
   "patterns/orange_red_grid.png",
-  "patterns/pink_sakura.png"
+  "patterns/pink_argyle.png",
+  "patterns/pink_sakura.png",
+  "patterns/purple_waves.png",
+  "patterns/ukiyo_e_hibiscus_tricube.png"
 ]
 
 function clearCanvas() {
@@ -12,15 +19,14 @@ function clearCanvas() {
 // Code courtesy of http://stackoverflow.com/questions/12796513/html5-canvas-to-png-file
 function saveCanvas() {
   var image = canvas.toDataURL("image/png");
-  /* Change MIME type to trick the browser to downlaod the file instead of displaying it */
+  // Change MIME type to trick the browser to downlaod the file instead of displaying it
   image = image.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
-  /* In addition to <a>'s "download" attribute, you can define HTTP-style headers */
+  // In addition to <a>'s "download" attribute, you can define HTTP-style headers
   image = image.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=tatami.png');
   this.href = image;
 }
-/* REGISTER DOWNLOAD HANDLER */
-/* Only convert the canvas to Data URL when the user clicks.
-   This saves RAM and CPU ressources in case this feature is not required. */
+
+// Only convert the canvas to Data URL when the user clicks.
 document.getElementById('save').addEventListener('click', saveCanvas, false);
 
 function getRandomInt() {
