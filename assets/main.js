@@ -31,52 +31,42 @@ function draw(clear) {
   let state = window.location.search.substr("?state=".length);
   let images = clear ? [] : window.atob(state).split("|");
 
-  // bottom left
-  let img_bl = new Image();
-  img_bl.src = images[0] || patterns[getRandomInt()];
-  img_bl.onload = function() {
-    let pattern = context.createPattern(img_bl, 'repeat');
-    context.fillStyle = pattern;
-    context.fillRect(0, 240, 240, 120);
+  let tatami = function(src, x, y, w, h) {
+    let img = new Image();
+    img.src = src;
+    img.onload = function() {
+      let pattern = context.createPattern(img, 'repeat');
+      context.fillStyle = pattern;
+      context.fillRect(x, y, w, h);
+
+      context.strokeStyle = "#000000";
+      context.lineWidth   = 0.5;
+      context.strokeRect(x, y, w, h);
+    }
+    return
   }
+
+  // bottom left
+  let img_bl_src = images[0] || patterns[getRandomInt()];
+  tatami(img_bl_src, 0, 240, 240, 120);
 
   // bottom right
-  let img_br = new Image();
-  img_br.src = images[1] || patterns[getRandomInt()];
-  img_br.onload = function() {
-    let pattern = context.createPattern(img_br, 'repeat');
-    context.fillStyle = pattern;
-    context.fillRect(240, 120, 120, 240);
-  }
+  let img_br_src = images[1] || patterns[getRandomInt()];
+  tatami(img_bl_src, 240, 120, 120, 240);
 
   // top right
-  let img_tr = new Image();
-  img_tr.src = images[2] || patterns[getRandomInt()];
-  img_tr.onload = function() {
-    let pattern = context.createPattern(img_tr, 'repeat');
-    context.fillStyle = pattern;
-    context.fillRect(120, 0, 240, 120);
-  }
+  let img_tr_src = images[2] || patterns[getRandomInt()];
+  tatami(img_tr_src, 120, 0, 240, 120);
 
   // top left
-  let img_tl = new Image();
-  img_tl.src = images[3] || patterns[getRandomInt()];
-  img_tl.onload = function() {
-    let pattern = context.createPattern(img_tl, 'repeat');
-    context.fillStyle = pattern;
-    context.fillRect(0, 0, 120, 240);
-  }
+  let img_tl_src = images[3] || patterns[getRandomInt()];
+  tatami(img_tl_src, 0, 0, 120, 240);
 
   // center
-  let img_c = new Image();
-  img_c.src = images[4] || patterns[getRandomInt()];
-  img_c.onload = function() {
-    let pattern = context.createPattern(img_c, 'repeat');
-    context.fillStyle = pattern;
-    context.fillRect(120, 120, 120, 120);
-  }
+  let img_c_src = images[4] || patterns[getRandomInt()];
+  tatami(img_c_src, 120, 120, 120, 120);
 
-  let img_state = `${img_bl.src}|${img_br.src}|${img_tr.src}|${img_tl.src}|${img_c.src}`;
+  let img_state = `${img_bl_src}|${img_br_src}|${img_tr_src}|${img_tl_src}|${img_c_src}`;
   let base64_img_state = window.btoa(img_state);
 
   // don't push a state if it is already the one being loaded
