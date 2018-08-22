@@ -1,7 +1,6 @@
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 const patterns = [
-  "patterns/asanoha.png",
   "patterns/aztec_tribal_white_blue.png",
   "patterns/fondo_con_mosaico_rojo.png",
   "patterns/orange_red_grid.png",
@@ -46,9 +45,9 @@ function draw(clear) {
       context.fillStyle = pattern;
       context.fillRect(x, y, w, h);
 
-      context.strokeStyle = "#000000";
-      context.lineWidth   = 1;
-      context.strokeRect(x, y, w, h);
+      // context.strokeStyle = "#000000";
+      // context.lineWidth   = 1;
+      // context.strokeRect(x, y, w, h);
     }
     return
   }
