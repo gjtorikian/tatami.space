@@ -44,6 +44,16 @@
          height: 30px;
        }
       }
+
+      @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+          body {
+              -webkit-transform: rotate(90deg);
+              -moz-transform: rotate(90deg);
+              -ms-transform: rotate(90deg);
+              -o-transform: rotate(90deg);
+              transform: rotate(90deg);
+          }
+      }
     </style>
 
     <meta property="og:title" content="Tatami Space" />
