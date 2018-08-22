@@ -4,13 +4,14 @@ const patterns = [
   "patterns/asanoha.png",
   "patterns/aztec_tribal_white_blue.png",
   "patterns/fondo_con_mosaico_rojo.png",
-  "patterns/hufflepugg_argyle.png",
   "patterns/orange_red_grid.png",
   "patterns/pink_argyle.png",
   "patterns/pink_sakura.png",
   "patterns/purple_waves.png",
   "patterns/ukiyo_e_hibiscus_tricube.png"
 ]
+
+context.globalCompositeOperation='destination-over';
 
 function clearCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -46,7 +47,7 @@ function draw(clear) {
       context.fillRect(x, y, w, h);
 
       context.strokeStyle = "#000000";
-      context.lineWidth   = 0.5;
+      context.lineWidth   = 1;
       context.strokeRect(x, y, w, h);
     }
     return
@@ -71,6 +72,11 @@ function draw(clear) {
   // center
   let img_c_src = images[4] || patterns[getRandomInt()];
   tatami(img_c_src, 120, 120, 120, 120);
+
+  // frame
+  context.strokeStyle = "#000000";
+  context.lineWidth   = 5;
+  context.strokeRect(0, 0, 360, 360);
 
   let img_state = `${img_bl_src}|${img_br_src}|${img_tr_src}|${img_tl_src}|${img_c_src}`;
   let base64_img_state = window.btoa(img_state);
