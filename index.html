@@ -44,11 +44,6 @@
          height: 30px;
        }
       }
-
-      #pleaserotate-backdrop {
-        color: #333;
-        background-color: #ffdfdf;
-      }
     </style>
 
     <meta property="og:title" content="Tatami Space" />
@@ -66,15 +61,6 @@
     {"@context":"http://schema.org","@type":"WebSite","name":"Tatami Space","headline":"Garen J. Torikian","image":"https://tatami.space/assets/card.png","description":"Pure sensibility can be satisfied with Mondrian.","sameAs":["https://twitter.com/gjtorikian","https://github.com/gjtorikian"],"url":"https://tatami.space/"}
     </script>
 
-    <script type="text/javascript">
-      PleaseRotateOptions = {
-        forcePortrait: false,
-        message: "Rotate",
-        subMessage: "",
-        allowClickBypass: false,
-      };
-    </script>
-    <script type="text/javascript" src="assets/pleaserotate.js"></script>
   </head>
 
   <body onload="draw();">
@@ -84,7 +70,7 @@
       </a>
     </div>
     <article class="vh-100 dt w-100 bg-washed-red">
-      <div class="dtc v-mid tc dark-blue baskerville ph3 ph4-l">
+      <div class="dtc v-mid tc dark-blue baskerville ph4-l">
         <div class="feature feature-3 boxed boxed--lg boxed--border">
           <canvas id="canvas" class="dib v-top" width="360" height="360"></canvas>
 
