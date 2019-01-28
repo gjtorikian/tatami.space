@@ -72,31 +72,31 @@ function draw(clear) {
   };
 
   // bottom left
-  let img_bl_src = images[0] || patterns[getRandomInt()];
-  tatami(img_bl_src, 0, 240, 240, 120);
+  let imgBLSrc = images[0] || patterns[getRandomInt()];
+  tatami(imgBLSrc, 0, 240, 240, 120);
 
   // bottom right
-  let img_br_src = images[1] || patterns[getRandomInt()];
-  tatami(img_bl_src, 240, 120, 120, 240);
+  let imgBRSrc = images[1] || patterns[getRandomInt()];
+  tatami(imgBLSrc, 240, 120, 120, 240);
 
   // top right
-  let img_tr_src = images[2] || patterns[getRandomInt()];
-  tatami(img_tr_src, 120, 0, 240, 120);
+  let imgTRSrc = images[2] || patterns[getRandomInt()];
+  tatami(imgTRSrc, 120, 0, 240, 120);
 
   // top left
-  let img_tl_src = images[3] || patterns[getRandomInt()];
-  tatami(img_tl_src, 0, 0, 120, 240);
+  let imgTLSrc = images[3] || patterns[getRandomInt()];
+  tatami(imgTLSrc, 0, 0, 120, 240);
 
   // center
-  let img_ct_src = images[4] || patterns[getRandomInt()];
-  tatami(img_ct_src, 120, 120, 120, 120);
+  let imgCTSrc = images[4] || patterns[getRandomInt()];
+  tatami(imgCTSrc, 120, 120, 120, 120);
 
   // frame
   context.strokeStyle = "#000000";
   context.lineWidth = 5;
   context.strokeRect(0, 0, 360, 360);
 
-  let img_state = `${img_bl_src}|${img_br_src}|${img_tr_src}|${img_tl_src}|${img_ct_src}`;
+  let img_state = `${imgBLSrc}|${imgBRSrc}|${imgTRSrc}|${imgTLSrc}|${imgCTSrc}`;
   let encoded_img_state = encode(img_state);
 
   // don't push a state if it is already the one being loaded
