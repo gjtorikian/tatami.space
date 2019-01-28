@@ -1,16 +1,19 @@
-const canvas = document.getElementById('canvas');
-const context = canvas.getContext('2d');
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext("2d");
 const patterns = [
-  "patterns/aztec_tribal_white_blue.png",
-  "patterns/fondo_con_mosaico_rojo.png",
-  "patterns/orange_red_grid.png",
-  "patterns/pink_argyle.png",
-  "patterns/pink_sakura.png",
-  "patterns/purple_waves.png",
-  "patterns/ukiyo_e_hibiscus_tricube.png"
-]
+  "aztec_tribal_white_blue.png",
+  "colorful_floral.png",
+  "indian_flower.png",
+  "orange_red_grid.png",
+  "pink_argyle.png",
+  "pink_sakura.png",
+  "seamless_argyle.png",
+  "tropical_floral.png",
+  "ukiyo_e_hibiscus_tricube.png",
+  "weave.png"
+];
 
-context.globalCompositeOperation='destination-over';
+context.globalCompositeOperation = "destination-over";
 
 function clearCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -19,38 +22,54 @@ function clearCanvas() {
 // Code courtesy of http://stackoverflow.com/questions/12796513/html5-canvas-to-png-file
 function saveCanvas() {
   var image = canvas.toDataURL("image/png");
-  // Change MIME type to trick the browser to downlaod the file instead of displaying it
-  image = image.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+  // Change MIME type to trick the browser to download the file instead of displaying it
+  image = image.replace(/^data:image\/[^;]*/, "data:application/octet-stream");
   // In addition to <a>'s "download" attribute, you can define HTTP-style headers
-  image = image.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=tatami.png');
+  image = image.replace(
+    /^data:application\/octet-stream/,
+    "data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=tatami.png"
+  );
   this.href = image;
 }
 
 // Only convert the canvas to Data URL when the user clicks.
-document.getElementById('save').addEventListener('click', saveCanvas, false);
+document.getElementById("save").addEventListener("click", saveCanvas, false);
 
 function getRandomInt() {
   return Math.floor(Math.random() * Math.floor(patterns.length));
 }
 
+function makeImageSrc(image) {
+  return `patterns/${image}`;
+}
+
+function encode(string) {
+  return window.btoa(string);
+}
+
+function decode(string) {
+  return window.atob(string).split("|");
+}
+
 function draw(clear) {
   let state = window.location.search.substr("?state=".length);
-  let images = clear ? [] : window.atob(state).split("|");
+  // force refresh from Generate New button
+  let images = clear ? [] : decode(state);
 
   let tatami = function(src, x, y, w, h) {
     let img = new Image();
-    img.src = src;
+    img.src = makeImageSrc(src);
     img.onload = function() {
-      let pattern = context.createPattern(img, 'repeat');
+      let pattern = context.createPattern(img, "repeat");
       context.fillStyle = pattern;
       context.fillRect(x, y, w, h);
 
       // context.strokeStyle = "#000000";
-      // context.lineWidth   = 1;
+      // context.lineWidth = 1;
       // context.strokeRect(x, y, w, h);
-    }
-    return
-  }
+    };
+    return;
+  };
 
   // bottom left
   let img_bl_src = images[0] || patterns[getRandomInt()];
@@ -69,20 +88,24 @@ function draw(clear) {
   tatami(img_tl_src, 0, 0, 120, 240);
 
   // center
-  let img_c_src = images[4] || patterns[getRandomInt()];
-  tatami(img_c_src, 120, 120, 120, 120);
+  let img_ct_src = images[4] || patterns[getRandomInt()];
+  tatami(img_ct_src, 120, 120, 120, 120);
 
   // frame
   context.strokeStyle = "#000000";
-  context.lineWidth   = 5;
+  context.lineWidth = 5;
   context.strokeRect(0, 0, 360, 360);
 
-  let img_state = `${img_bl_src}|${img_br_src}|${img_tr_src}|${img_tl_src}|${img_c_src}`;
-  let base64_img_state = window.btoa(img_state);
+  let img_state = `${img_bl_src}|${img_br_src}|${img_tr_src}|${img_tl_src}|${img_ct_src}`;
+  let encoded_img_state = encode(img_state);
 
   // don't push a state if it is already the one being loaded
-  if (state != base64_img_state) {
-    window.history.pushState({ state: base64_img_state }, document.title, `?state=${base64_img_state}`);
+  if (state != encoded_img_state) {
+    window.history.pushState(
+      { state: encoded_img_state },
+      document.title,
+      `?state=${encoded_img_state}`
+    );
   }
 }
 

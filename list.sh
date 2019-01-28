@@ -3,5 +3,5 @@
 set -e
 
 for p in patterns/*.png; do
-  echo $p | sed 's/\(.*\)/"\1",/';
+  echo $p | sed 's/patterns\/\(.*\)/"\1",/';
 done
