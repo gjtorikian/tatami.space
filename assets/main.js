@@ -4,6 +4,7 @@ const patterns = [
   "aztec_tribal_white_blue.png",
   "colorful_floral.png",
   "indian_flower.png",
+  "maneki_neko.png",
   "orange_red_grid.png",
   "pink_argyle.png",
   "pink_sakura.png",
