@@ -1,17 +1,20 @@
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 const patterns = [
-  "aztec_tribal_white_blue.png",
-  "colorful_floral.png",
-  "indian_flower.png",
-  "maneki_neko.png",
-  "orange_red_grid.png",
-  "pink_argyle.png",
-  "pink_sakura.png",
-  "seamless_argyle.png",
-  "tropical_floral.png",
-  "ukiyo_e_hibiscus_tricube.png",
-  "weave.png"
+  "aztec_tribal_white_blue",
+  "bananas",
+  "blue_hair",
+  "colorful_floral",
+  "indian_flower",
+  "maneki_neko",
+  "orange_red_grid",
+  "pink_argyle",
+  "pink_sakura",
+  "seamless_argyle",
+  "orange_zaps",
+  "tropical_floral",
+  "ukiyo_e_hibiscus_tricube",
+  "weave"
 ];
 
 context.globalCompositeOperation = "destination-over";
@@ -28,7 +31,7 @@ function saveCanvas() {
   // In addition to <a>'s "download" attribute, you can define HTTP-style headers
   image = image.replace(
     /^data:application\/octet-stream/,
-    "data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=tatami.png"
+    "data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=tatami"
   );
   this.href = image;
 }
@@ -41,7 +44,7 @@ function getRandomInt() {
 }
 
 function makeImageSrc(image) {
-  return `patterns/${image}`;
+  return `patterns/${image}.png`;
 }
 
 function encode(string) {
